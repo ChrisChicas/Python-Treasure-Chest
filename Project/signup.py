@@ -1,4 +1,3 @@
-from ftplib import error_reply
 from flask import (Blueprint, render_template, request, redirect)
 import bcrypt
 from . import models
@@ -19,7 +18,7 @@ def signup():
 
         user = models.User.query.filter_by(username=username).first()
         if user:
-            return render_template("signup.html", error="Username already in use!")
+            return render_template("signup.html", error="Username already taken!")
 
         new_user = models.User(first_name=first_name, last_name=last_name, username=username, password=new_pass)
         models.db.session.add(new_user)
