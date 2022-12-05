@@ -1,7 +1,5 @@
-from flask import (Blueprint, render_template)
-from flask_sqlalchemy import SQLAlchemy
-
-bp = SQLAlchemy()
+from flask import (Blueprint, render_template, redirect, request)
+from . import pyjwt
 
 bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
@@ -9,4 +7,9 @@ bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
 @bp.route("/")
 def dashboard():
+    print(request.headers)
+    print(pyjwt.token_check())
+    # if token == None:
+    #     return redirect("/")
+
     return render_template("dashboard.html")

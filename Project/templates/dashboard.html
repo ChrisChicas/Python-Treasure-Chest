@@ -7,6 +7,12 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Dashboard!</h1>
+    {% if token %}
+        <h1>Dashboard! Welcome, {{username}}!</h1>
+        <script>
+            localStorage.setItem("token", "{{token}}")
+        </script>
+    {% endif %}
+        <h1>Dashboard!</h1>
 </body>
 </html>
