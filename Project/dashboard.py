@@ -1,15 +1,15 @@
-from flask import (Blueprint, render_template, redirect, request)
-from . import pyjwt
+from flask import (Blueprint, render_template, redirect, request, session)
 
 bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
-# Add jwt or authentication check to see if logged in, else dashboard should be inaccessible and should simply re route to home page.
-
 @bp.route("/")
 def dashboard():
-    print(request.headers)
-    print(pyjwt.token_check())
-    # if token == None:
-    #     return redirect("/")
+    if not session.get("logged_in"):
+        return redirect("/login")
 
-    return render_template("dashboard.html")
+    return render_template("dashboard.html", user=session["user"]["username"])
+
+@bp.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")

@@ -1,4 +1,4 @@
-from flask import (Flask, render_template)
+from flask import (Flask, render_template, session, redirect)
 from flask_migrate import Migrate
 
 def create_app():
@@ -9,12 +9,14 @@ def create_app():
     app.config["SECRET_KEY"] = _config.secret_key
     app.config["SOLALCHEMY_TRACK_MODIFICATIONS"] = True
     
-
     models.db.init_app(app)
     migrate = Migrate(app, models.db)
 
     @app.route("/")
     def home():
+        if session.get("logged_in"):
+            return redirect("/dashboard")
+        
         return render_template("home.html")
 
     app.register_blueprint(signup.bp)

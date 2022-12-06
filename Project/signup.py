@@ -1,6 +1,6 @@
-from flask import (Blueprint, render_template, request, redirect)
-import bcrypt, jwt
-from . import (models, _config)
+from flask import (Blueprint, render_template, request, redirect, session)
+import bcrypt
+from . import models
 
 bp = Blueprint("signup", __name__, url_prefix="/signup")
 
@@ -24,8 +24,12 @@ def signup():
         models.db.session.add(new_user)
         models.db.session.commit()
 
-        token = jwt.encode({"user_id": new_user.user_id}, _config.secret_key, "HS256")
+        session["logged_in"] = True
+        session["user"] = {"user_id": new_user.user_id, "username": new_user.username}
 
-        return render_template("dashboard.html", token=token, username=new_user.username)
+        return redirect("/dashboard")
+
+    if session.get("logged_in"):
+        return redirect("/dashboard")
     
     return render_template("signup.html")
