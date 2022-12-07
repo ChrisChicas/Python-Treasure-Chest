@@ -14,7 +14,7 @@ def login():
         if user:
             if bcrypt.checkpw(password.encode("utf-8"), user.password):
                 session["logged_in"] = True
-                session["user"] = {"user_id": user.user_id, "username": user.username}
+                session["user"] = {"user_id": user.user_id, "username": user.username, "role": user.role}
                 return redirect("/dashboard")
             else:
                 return render_template("login.html", error="Username or Password incorrect!")

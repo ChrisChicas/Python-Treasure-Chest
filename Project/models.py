@@ -1,3 +1,4 @@
+from sqlalchemy.dialects import postgresql
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -10,7 +11,7 @@ class User(db.Model):
     last_name = db.Column(db.String(30), nullable = False)
     username = db.Column(db.String(100), nullable = False, unique = True)
     password = db.Column(db.LargeBinary, nullable = False)
-    #Add role column
+    role = db.Column(postgresql.ENUM("user", "admin", name="user_roles"), nullable = False, default = "user")
 
 # Add models for treasure chests (containers) and treasures (items)
 # Look into how to make relationships between all tables

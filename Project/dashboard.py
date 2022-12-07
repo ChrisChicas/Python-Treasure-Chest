@@ -7,7 +7,7 @@ def dashboard():
     if not session.get("logged_in"):
         return redirect("/login")
 
-    return render_template("dashboard.html", user=session["user"]["username"])
+    return render_template("dashboard.html", user=session.get("user"))
 
 @bp.route("/logout")
 def logout():

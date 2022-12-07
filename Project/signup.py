@@ -25,7 +25,7 @@ def signup():
         models.db.session.commit()
 
         session["logged_in"] = True
-        session["user"] = {"user_id": new_user.user_id, "username": new_user.username}
+        session["user"] = {"user_id": new_user.user_id, "username": new_user.username, "role": new_user.role}
 
         return redirect("/dashboard")
 
