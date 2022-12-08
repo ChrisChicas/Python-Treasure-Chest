@@ -12,7 +12,7 @@ class User(db.Model):
     username = db.Column(db.String(100), nullable = False, unique = True)
     password = db.Column(db.LargeBinary, nullable = False)
     role = db.Column(postgresql.ENUM("user", "admin", name="user_roles"), nullable = False, default = "user")
-    chests = db.relationship("Chest", backref = "user")
+    chests = db.relationship("Chest", backref = "users")
 
 class Chest(db.Model):
     __tablename__ = "chests"
@@ -20,7 +20,7 @@ class Chest(db.Model):
     chest_id = db.Column(db.Integer, primary_key = True)
     chest_name = db.Column(db.String(100), nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable = False)
-    treasures = db.relationship("Treasure", backref = "chest")
+    treasures = db.relationship("Treasure", backref = "chests")
 
 class Treasure(db.Model):
     __tablename__ = "treasures"
