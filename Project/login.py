@@ -24,4 +24,4 @@ def login():
     if session.get("logged_in"):
         return redirect("/dashboard")
         
-    return render_template("login.html")
+    return render_template("authentication/login.html")

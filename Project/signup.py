@@ -32,4 +32,4 @@ def signup():
     if session.get("logged_in"):
         return redirect("/dashboard")
     
-    return render_template("signup.html")
+    return render_template("authentication/signup.html")

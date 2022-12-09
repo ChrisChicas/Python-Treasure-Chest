@@ -15,8 +15,8 @@
         </div>
         {% for chest in chests: %}
             <div>
-                <h2><a href="/dashboard/chests/{{chest.chest_name}}">{{chest.chest_name}}</a></h2>
-                <button><a href="/dashboard/chests/{{chest.chest_name}}/edit">Chest Options</a></button>
+                <h2><a href="/dashboard/chests/{{chest.chest_id}}">{{chest.chest_name}}</a></h2>
+                <button><a href="/dashboard/chests/{{chest.chest_id}}/edit">Chest Options</a></button>
             </div>
         {% endfor %}
     {% else %}
