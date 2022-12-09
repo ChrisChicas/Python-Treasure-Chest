@@ -9,11 +9,27 @@
 </head>
 <body>
     <h1>Welcome {{user.username}}!</h1>
-    {% if user.role == "user" %}
-        <h1>You are a user!</h1>
+    {% if chests %}
+        <div>
+            <h2>Your current chests:</h2>
+        </div>
+        {% for chest in chests: %}
+            <div>
+                <h2><a href="/dashboard/chests/{{chest.chest_name}}">{{chest.chest_name}}</a></h2>
+                <button><a href="/dashboard/chests/{{chest.chest_name}}/edit">Chest Options</a></button>
+            </div>
+        {% endfor %}
     {% else %}
-        <h1>Greetings, admin!</h1>
+        <div>
+            <h2>No current chests. Create one below!</h2>
+        </div>
     {% endif %}
+    <h2>Create a new chest!</h2>
+    <form action="/dashboard/chests" method="POST">
+        <label for="chest_name">Chest Name:</label>
+        <input type="text" name="chest_name" id="chest_name" required>
+        <input type="submit" value="Submit">
+    </form>
     <button><a href="/dashboard/logout">Logout</a></button>
 </body>
 </html>
