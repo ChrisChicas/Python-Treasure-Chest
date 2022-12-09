@@ -9,9 +9,23 @@
 </head>
 <body>
     <h1>Welcome to your {{chest.chest_name}} Chest!</h1>
-    <div>
-        <h2></h2>
-    </div>
+    {% if treasures %}
+        <div>
+            <h2>Your current treasures:</h2>
+        </div>
+        {% for treasure in treasures: %}
+            <div>
+                <span>
+                    <h2>{{treasure.treasure_title}}:</h2>
+                    <h2>{{treasure.treasure_details}}</h2>    
+                </span>  
+            </div>
+        {% endfor %}
+    {% else %}
+        <div>
+            <h2>This treasure chest is empty. Add some treasure below!</h2>
+        </div>
+    {% endif %}
     <button><a href="/dashboard">Back</a></button>
 </body>
 </html>

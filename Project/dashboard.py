@@ -11,7 +11,7 @@ def dashboard():
     chests = models.Chest.query.filter_by(user_id=session["user"]["user_id"]).all()
     return render_template("dashboard.html", user=session.get("user"), chests=chests)
 
-@bp.route("/chests", methods=["POST"])
+@bp.route("/chests", methods=["GET", "POST"])
 def new_chest():
     if not session.get("logged_in"):
         return redirect("/login")
@@ -25,7 +25,7 @@ def new_chest():
 
         return redirect("/dashboard")
 
-@bp.route("/chests/<string:name>", methods=["GET", "POST", "PUT", "DELETE"])
+@bp.route("/chests/<string:name>", methods=["GET", "POST"])
 def show_chest(name):
     if not session.get("logged_in"):
         return redirect("/login")
@@ -50,20 +50,6 @@ def show_chest(name):
             return redirect("/dashboard")  
     # Post method made to accomodate html forms
 
-    if request.method == "PUT":
-        chest_name = request.form["chest_name"]
-
-        chest.chest_name = chest_name
-        models.db.session.commit()
-
-        return redirect("/dashboard")
-
-    if request.method == "DELETE":
-        models.db.session.delete(chest)
-        models.db.session.commit()
-
-        return redirect("/dashboard")
-
     return render_template("chests/show.html", chest=chest, treasures=treasures)
 
 @bp.route("/chests/<string:name>/edit")
@@ -76,10 +62,12 @@ def edit_chest(name):
     return render_template("chests/edit.html", chest=chest)
 
 
-@bp.route("/logout")
+@bp.route("/logout", methods=["POST"])
 def logout():
     if not session.get("logged_in"):
         return redirect("/login")
 
-    session.clear()
-    return redirect("/")
+    if request.method == "POST":
+        session.clear()
+
+        return redirect("/")
