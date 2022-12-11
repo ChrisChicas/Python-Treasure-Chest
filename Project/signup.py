@@ -14,11 +14,11 @@ def signup():
         new_pass = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt(12))
 
         if len(username) < 6 or len(password) < 6:
-            return render_template("signup.html", error="Username and Password must be at least 6 characters!")
+            return render_template("authentication/signup.html", error="Username and Password must be at least 6 characters!")
 
         user = models.User.query.filter_by(username=username).first()
         if user:
-            return render_template("signup.html", error="Username already taken!")
+            return render_template("authentication/signup.html", error="Username already taken!")
 
         new_user = models.User(first_name=first_name, last_name=last_name, username=username, password=new_pass)
         models.db.session.add(new_user)

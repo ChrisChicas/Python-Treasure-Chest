@@ -17,9 +17,9 @@ def login():
                 session["user"] = {"user_id": user.user_id, "username": user.username}
                 return redirect("/dashboard")
             else:
-                return render_template("login.html", error="Username or Password incorrect!")
+                return render_template("authentication/login.html", error="Username or Password incorrect!")
         else:
-            return render_template("login.html", error="Username or Password incorrect!")
+            return render_template("authentication/login.html", error="Username or Password incorrect!")
     
     if session.get("logged_in"):
         return redirect("/dashboard")
