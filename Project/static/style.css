@@ -1,0 +1,25 @@
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    color: white;
+}
+
+.alternate a{
+    color: black;
+}
+
+body{
+    background-color: lightskyblue;
+    color: black;
+}
+
+.btn{
+   margin: 0.2em; 
+}
+
+.container{
+    text-align: center;
+}
