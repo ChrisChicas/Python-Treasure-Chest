@@ -1,7 +1,7 @@
 # Treasure Chest
 This python Treasure Chest is a password manager/overall information storage app, where users can sign up/log in to their own accounts to manage their treasure chests 
 (essentially a folder), and their treasures (passwords/other information) they wish to add to their chests! Treasure Chest also has a variety of other features, such as
-user authentication/authorization, CRUD operations, session functionality, and password hashing.
+user authentication/authorization, CRUD operations, session functionality, and password hashing. Styled by CSS and Bootstrap, assets created by Christian Chicas.
 
 ## Technologies
 This is a monolithic app that was built using python & flask to handle both the front and back ends while connecting to a Postgres database. 

@@ -23,3 +23,7 @@ body{
 .container{
     text-align: center;
 }
+
+.col{
+    max-width: 400px;
+}
