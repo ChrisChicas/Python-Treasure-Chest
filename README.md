@@ -66,5 +66,4 @@ These are all of the other methods that this application's back-end handles:
 | POST | /dashboard/logout | Clears user session and redirects to home |
 
 ## To-Do:
-- Work on styling with CSS/Bootstrap
 - TBD

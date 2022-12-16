@@ -17,7 +17,7 @@
                 <h2>Your current treasures:</h2>
             </div>
             {% for treasure in treasures: %}
-                <div class="alternate">
+                <div class="alternate treasure">
                     <h3>{{treasure.treasure_title}}: {{treasure.treasure_details}}</h3> 
                     <button class="btn btn-warning"><a href="/dashboard/chests/{{chest.chest_id}}/treasures/{{treasure.treasure_id}}/edit">Edit</a></button>
                 </div>
@@ -27,15 +27,20 @@
                 <h2>This treasure chest is empty. Add some treasure below!</h2>
             </div>
         {% endif %}
-        <h2>Add a new treasure!</h2>
-        <form action="/dashboard/chests/{{chest.chest_id}}/treasures" method="POST">
-            <label for="treasure_title">Treasure Title:</label>
-            <input type="text" name="treasure_title" id="treasure_title" required>
-            <label for="treasure_details">Treasure Details</label>
-            <input type="text" name="treasure_details" id="treasure_details" required>
-            <input class="btn btn-success" type="submit" value="Submit">
-        </form>
-        <button class="btn btn-secondary"><a href="/dashboard">Back</a></button>
+        <div class="cloud">
+            <h2>Add a new treasure!</h2>
+            {% if error %}
+                <p>Error: {{error}}</p>
+            {% endif %}
+            <form action="/dashboard/chests/{{chest.chest_id}}/treasures" method="POST">
+                <label for="treasure_title">Treasure Title:</label>
+                <input type="text" name="treasure_title" id="treasure_title" maxlength="100" required>
+                <label for="treasure_details">Treasure Details</label>
+                <input type="text" name="treasure_details" id="treasure_details" required>
+                <input class="btn btn-success" type="submit" value="Submit">
+            </form>
+            <button class="btn btn-secondary"><a href="/dashboard">Dashboard</a></button>
+        </div>
     </main>
 </body>
 </html>

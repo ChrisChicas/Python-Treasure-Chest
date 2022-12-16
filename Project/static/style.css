@@ -11,6 +11,17 @@ a:hover{
     color: black;
 }
 
+.center{
+    margin-top: 25vh;
+}
+
+.cloud{
+    background-color: azure;
+    border: 3px solid white;
+    border-radius: 2em;
+    box-shadow: 0 3px gray
+}
+
 body{
     background-color: lightskyblue;
     color: black;
@@ -20,10 +31,28 @@ body{
    margin: 0.2em; 
 }
 
-.container{
-    text-align: center;
+.chest{
+    background-color: saddlebrown;
+    border: 3px solid goldenrod;
+    margin-bottom: 1em;
 }
 
-.col{
-    max-width: 400px;
+.chest h2{
+    border-bottom: 3px solid goldenrod;
+}
+
+.container{
+    text-align: center;
+    word-break: break-all;
+}
+
+.home{
+    max-width: 40vw;
+}
+
+.treasure{
+    background-color: goldenrod;
+    border: 3px solid gold;
+    border-radius: 3em;
+    margin-bottom: 1em;
 }

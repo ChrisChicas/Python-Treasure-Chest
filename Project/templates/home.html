@@ -10,12 +10,14 @@
     <title>Treasure Chest</title>
 </head>
 <body>
-    <main class="container">
-        <h1>Welcome to the Treasure Chest!</h1>
-        <button class="btn btn-primary"><a href="/login">Login</a></button>
-        <button class="btn btn-success"><a href="/signup">Sign Up</a></button>
+    <main class="container center">
+        <div class="cloud">
+            <h1>Welcome to the Treasure Chest!</h1>
+            <button class="btn btn-primary"><a href="/login">Login</a></button>
+            <button class="btn btn-success"><a href="/signup">Sign Up</a></button>
+        </div>
         <div>
-            <img src="{{url_for('static', filename='/assets/Chest.png')}}" alt="">    
+            <img class="home" src="{{url_for('static', filename='/assets/Chest.png')}}" alt="">    
         </div>
     </main>
 </body>

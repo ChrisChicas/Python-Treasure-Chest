@@ -17,7 +17,7 @@
                 <h2>Your current chests:</h2>
             </div>
             {% for chest in chests: %}
-                <div class="alternate">
+                <div class="alternate chest">
                     <h2><a href="/dashboard/chests/{{chest.chest_id}}">{{chest.chest_name}}</a></h2>
                     <button class="btn btn-warning"><a href="/dashboard/chests/{{chest.chest_id}}/edit">Chest Options</a></button>
                 </div>
@@ -27,15 +27,20 @@
                 <h2>No current chests. Create one below!</h2>
             </div>
         {% endif %}
-        <h2>Create a new chest!</h2>
-        <form action="/dashboard/chests" method="POST">
-            <label for="chest_name">Chest Name:</label>
-            <input type="text" name="chest_name" id="chest_name" required>
-            <input class="btn btn-success" type="submit" value="Submit">
-        </form>
-        <form action="/dashboard/logout" method="POST">
-            <input class="btn btn-secondary" type="submit" value="Logout">
-        </form>
+        <div class="cloud">
+            <h2>Create a new chest!</h2>
+            {% if error %}
+                <p>Error: {{error}}</p>
+            {% endif %}
+            <form action="/dashboard/chests" method="POST">
+                <label for="chest_name">Chest Name:</label>
+                <input type="text" name="chest_name" id="chest_name" maxlength="100" required>
+                <input class="btn btn-success" type="submit" value="Submit">
+            </form>
+            <form action="/dashboard/logout" method="POST">
+                <input class="btn btn-secondary" type="submit" value="Logout">
+            </form>
+        </div> 
     </main>
 </body>
 </html>

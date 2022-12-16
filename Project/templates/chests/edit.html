@@ -10,12 +10,15 @@
     <title>Edit Chest</title>
 </head>
 <body>
-    <main class="container">
+    <main class="container center cloud">
         <h1>Editing {{chest.chest_name}} Chest</h1>
+        {% if error %}
+            <p>Error: {{error}}</p>
+        {% endif %}
         <div>
             <form action="/dashboard/chests/{{chest.chest_id}}" method="POST">
                 <label for="chest_name">Edit Chest Name:</label>
-                <input type="text" name="chest_name" id="chest_name" value="{{chest.chest_name}}" required>
+                <input type="text" name="chest_name" id="chest_name" value="{{chest.chest_name}}" maxlength="100" required>
                 <input type="hidden" name="method" value="PUT">
                 <input class="btn btn-success" type="submit" value="Submit">
             </form>
@@ -24,7 +27,7 @@
                 <input type="hidden" name="method" value="DELETE">
             </form>
         </div>
-        <button class="btn btn-secondary"><a href="/dashboard">Back</a></button>
+        <button class="btn btn-secondary"><a href="/dashboard">Dashboard</a></button>
     </main>
 </body>
 </html>

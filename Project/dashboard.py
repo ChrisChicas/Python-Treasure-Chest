@@ -18,6 +18,9 @@ def new_chest():
 
     if request.method == "POST":
         chest_name = request.form["chest_name"]
+        if len(chest_name) > 100:
+            chests = models.Chest.query.filter_by(user_id=session["user"]["user_id"]).all()
+            return render_template("dashboard.html", user=session.get("user"), chests=chests, error="Chest name cannot be over 100 characters!")
 
         new_chest = models.Chest(chest_name=chest_name, user_id=session["user"]["user_id"])
         models.db.session.add(new_chest)
@@ -38,6 +41,8 @@ def show_and_edit_chest(chest_id):
 
         if method == "PUT":
             chest_name = request.form["chest_name"]
+            if len(chest_name) > 100:
+                return render_template("chests/edit.html", chest=chest, error="Chest name cannot be over 100 characters!")
 
             chest.chest_name = chest_name
             models.db.session.commit()
@@ -69,6 +74,10 @@ def new_treasure(chest_id):
     if request.method == "POST":
         treasure_title = request.form["treasure_title"]
         treasure_details = request.form["treasure_details"]
+        if len(treasure_title) > 100:
+            chest = models.Chest.query.filter_by(chest_id=chest_id).first()
+            treasures = models.Treasure.query.filter_by(chest_id=chest.chest_id).all()
+            return render_template("chests/show.html", chest=chest, treasures=treasures, error="Treasure title cannot be over 100 characters!")
 
         new_treasure = models.Treasure(treasure_title=treasure_title, treasure_details=treasure_details, chest_id=chest_id)
         models.db.session.add(new_treasure)
@@ -89,6 +98,8 @@ def edit_treasure(chest_id, treasure_id):
         if method == "PUT":
             treasure_title = request.form["treasure_title"]
             treasure_details = request.form["treasure_details"]
+            if len(treasure_title) > 100:
+                return render_template("treasures/edit.html", treasure=treasure, error="Treasure title cannot be over 100 characters!")
 
             treasure.treasure_title = treasure_title
             treasure.treasure_details = treasure_details

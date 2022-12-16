@@ -10,12 +10,15 @@
     <title>Edit Treasure</title>
 </head>
 <body>
-    <main class="container">
-        <h1>Editing {{treasure.treasure_title}} Chest</h1>
+    <main class="container center cloud">
+        <h1>Editing {{treasure.treasure_title}} Treasure</h1>
+        {% if error %}
+            <p>Error: {{error}}</p>
+        {% endif %}
         <div>
             <form action="/dashboard/chests/{{treasure.chest_id}}/treasures/{{treasure.treasure_id}}" method="POST">
                 <label for="treasure_title">Edit Treasure Title:</label>
-                <input type="text" name="treasure_title" id="treasure_title" value="{{treasure.treasure_title}}" required>
+                <input type="text" name="treasure_title" id="treasure_title" value="{{treasure.treasure_title}}" maxlength="100" required>
                 <label for="treasure_details">Edit Treasure Details</label>
                 <input type="text" name="treasure_details" id="treasure_details" value="{{treasure.treasure_details}}" required>
                 <input type="hidden" name="method" value="PUT">
@@ -26,7 +29,7 @@
                 <input type="hidden" name="method" value="DELETE">
             </form>
         </div>
-        <button class="btn btn-secondary"><a href="/dashboard">Back</a></button>
+        <button class="btn btn-secondary"><a href="/dashboard/chests/{{treasure.chest_id}}">Back</a></button>
     </main>
 </body>
 </html>
