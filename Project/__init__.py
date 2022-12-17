@@ -1,12 +1,13 @@
 from flask import (Flask, render_template, session, redirect)
 from flask_migrate import Migrate
+from os import environ
 
 def create_app():
     app = Flask(__name__)
 
-    from . import (_config, models, signup, login, dashboard)
-    app.config["SQLALCHEMY_DATABASE_URI"] = _config.connection_string
-    app.config["SECRET_KEY"] = _config.secret_key
+    from . import (models, signup, login, dashboard)
+    app.config["SQLALCHEMY_DATABASE_URI"] = environ.get("CONNECTION_STRING")
+    app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
     app.config["SOLALCHEMY_TRACK_MODIFICATIONS"] = True
     
     models.db.init_app(app)

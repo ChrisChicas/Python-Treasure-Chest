@@ -1,3 +1,5 @@
+.env
+.flaskenv
 __pycache__
 _config.py
 Treasure Chest

@@ -14,13 +14,18 @@ Setting up this app locally will require a few steps:
 - Create and activate a python venv for this project
 - Once in your venv, install all dependencies by running `pip install -r requirements.txt`
 - Create a Postgres database to connect the app to
-- Create a `_config.py` file with the following:
+- Create a `.flaskenv` file with the following:
 ```
-connection_string = {connection string to your Postgres database}
-secret_key = {any random string}
+FLASK_ENV=development flask run
+FLASK_APP=Project
+```
+- Create a `.env` file with thi following:
+```
+CONNECTION_STRING={connection string to your Postgres database}
+SECRET_KEY={any random string}
 ```
 - With the app now able to connect to your database, run `flask db upgrade` to migrate the initial migration file into your database
-- Finally, run your app by running `flask run` or `flask run --reload`, and open the link to the app provided by flask
+- Finally, run your app by running `flask run`, and open the link to the app provided by flask
 
 ## Application Logic
 As this app was built as a monolith project using python and flask, this app primarily relies on the back-end to perform specific functions while rendering an HTML file for the 
