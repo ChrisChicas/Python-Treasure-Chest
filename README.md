@@ -19,7 +19,7 @@ Setting up this app locally will require a few steps:
 FLASK_ENV=development flask run
 FLASK_APP=Project
 ```
-- Create a `.env` file with thi following:
+- Create a `.env` file with the following:
 ```
 CONNECTION_STRING={connection string to your Postgres database}
 SECRET_KEY={any random string}
