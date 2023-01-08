@@ -49,6 +49,7 @@ def show_and_edit_chest(chest_id):
 
             return redirect("/dashboard")
         elif method == "DELETE":
+            models.db.session.query(models.Treasure).filter_by(chest_id=chest_id).delete()
             models.db.session.delete(chest)
             models.db.session.commit()
 
